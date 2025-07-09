@@ -1,15 +1,17 @@
-# model.py
-
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, davies_bouldin_score
+import numpy as np
+
 
 
 # 1. Data Cleaning
 def bersihkan_data(df):
     df['Price_clean'] = (
-        df['Price'].str.replace('Rp', '', regex=False)
+        df['Price'].astype(str)
+        .str.replace('Rp', '', regex=False)
         .str.replace('.', '', regex=False)
         .str.replace(',', '.', regex=False)
         .str.strip()
@@ -18,6 +20,7 @@ def bersihkan_data(df):
     df['Order_id'] = df['Order_id'].fillna(method='ffill')
     df['Order_date'] = pd.to_datetime(df['Order_date'], errors='coerce')
     df = df.dropna(subset=['Customer_id', 'Order_date', 'Price_clean']).copy()
+    df['Customer_id'] = df['Customer_id'].astype(float).astype(int).astype(str)  # Hilangkan .0
     df['Total_Transaksi'] = df['Quantity'] * df['Price_clean']
     df = df[df['Total_Transaksi'] > 0]
     df.to_csv("assets/data_bersih.csv", index=False)
@@ -89,15 +92,23 @@ def evaluasi_multi_k(X_scaled, k_range):
            pd.DataFrame(sil_results, columns=['Jumlah Cluster', 'Silhouette Score'])
 
 
-# 6. Gabung ke data akhir
-def gabung_final(df_clean, df_clustered):
+# 6. Gabung ke data akhir + customer name
+def gabung_final(df_clean, df_clustered, df_customer=None):
+    df_clean['Customer_id'] = df_clean['Customer_id'].astype(str)
+    df_clustered['Customer_id'] = df_clustered['Customer_id'].astype(str)
+
     df_final = df_clean.merge(df_clustered[['Customer_id', 'Cluster']], on='Customer_id', how='left')
+
+    if df_customer is not None:
+        df_customer['Customer_id'] = df_customer['Customer_id'].astype(str)
+        df_final = df_final.merge(df_customer[['Customer_id', 'Customer_name']], on='Customer_id', how='left')
+
     df_final.to_csv("assets/final_clustered.csv", index=False)
     return df_final
 
 
 # 7. Rekomendasi produk per cluster
-def rekomendasi_produk(df_final):
+def rekomendasi_produk(df_final, simpan=True):
     rekom = (
         df_final
         .groupby(['Cluster', 'Product_Name'])['Total_Transaksi']
@@ -106,5 +117,10 @@ def rekomendasi_produk(df_final):
         .sort_values(['Cluster', 'Total_Transaksi'], ascending=[True, False])
     )
     top_produk = rekom.groupby('Cluster').head(1).reset_index(drop=True)
+
+    if simpan:
+        top_produk.to_csv("assets/hasil_rekomendasi.csv", index=False)
+
     return top_produk
+
 
