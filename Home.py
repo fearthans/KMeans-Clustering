@@ -44,9 +44,13 @@ if uploaded_file:
         # Tampilkan data awal & bersih
         with st.expander("🔍 Lihat Data Asli (Raw)"):
             st.dataframe(df_raw, use_container_width=True, height=400)
+            st.markdown(f"📦 Jumlah data awal: **{len(df_raw)}** baris")
 
         with st.expander("✅ Lihat Data Bersih (Siap Olah)"):
             st.dataframe(df_clean, use_container_width=True, height=400)
+            st.markdown(f"🧹 Jumlah data setelah dibersihkan: **{len(df_clean)}** baris")
+            st.markdown(f"❌ Data yang dibuang: **{len(df_raw) - len(df_clean)}** baris")
+
 
     except Exception as e:
         st.error(f"Terjadi kesalahan saat membaca file: {e}")
