@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 from model import bersihkan_data
 
+with st.sidebar:
+    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.markdown("Qaraa Segmentation App")
+
+    
 # Konfigurasi halaman
 st.set_page_config(page_title="Customer Segmentation App", layout="wide")
 
@@ -54,7 +59,10 @@ st.markdown("---")
 # Panduan Alur Aplikasi
 st.markdown("### 🚀 Alur Analisis:")
 st.markdown("""
-1. **RFM Analysis** – Membersihkan data & menghitung Recency, Frequency, Monetary (RFM)
-2. **Clustering** – Segmentasi pelanggan menggunakan K-Means, termasuk evaluasi DBI & Silhouette Score
-3. **Dashboard & Rekomendasi** – Visualisasi hasil, lihat pelanggan bernilai tinggi, dan rekomendasi produk terbaik tiap cluster
-""")
+<ol style='font-size:17px;'>
+  <li><b>RFM Analysis</b> – Hitung Recency, Frequency, dan Monetary</li>
+  <li><b>Clustering</b> – Segmentasi pelanggan menggunakan K-Means, evaluasi DBI & Silhouette</li>
+  <li><b>Customer Segmentation</b> – Tampilkan nama pelanggan, produk, dan segmen berdasarkan perilaku</li>
+  <li><b>Dashboard & Insight</b> – Visualisasi dan ringkasan hasil segmentasi</li>
+</ol>
+""", unsafe_allow_html=True)

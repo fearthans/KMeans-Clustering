@@ -6,8 +6,14 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from model import gabung_final, rekomendasi_produk
 
+with st.sidebar:
+    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.markdown("Qaraa Segmentation App")
+
 st.set_page_config(page_title="Customer Dashboard", layout="wide")
 st.title("📊 Customer Dashboard & Rekomendasi Produk")
+
+
 
 # Validasi session
 if "data_bersih" not in st.session_state or "df_clustered" not in st.session_state:
@@ -128,6 +134,7 @@ ax.legend(handles=legend_handles, title='Cluster', loc='upper right')
 
 # Tampilkan di Streamlit
 st.pyplot(fig3)
+                            
 
 # Export CSV
 st.subheader("⬇️ Unduh Data Akhir (1 baris per customer)")

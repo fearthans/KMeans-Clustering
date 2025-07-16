@@ -4,6 +4,10 @@ import numpy as np
 import plotly.express as px
 from model import hitung_rfm
 
+with st.sidebar:
+    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.markdown("Qaraa Segmentation App")
+
 st.set_page_config(page_title="RFM Analysis", layout="wide")
 st.title("📦 RFM Analysis")
 
@@ -201,10 +205,10 @@ segment_size['label_full'] = segment_size.apply(
     lambda row: f"{row['segment']} ({row['customer_count']} | {row['percent']}%)", axis=1
 )
 
-# Berikan label segmen unik sebagai kategori warna (agar tidak pakai gradasi)
+# label segmen unik sebagai kategori warna 
 segment_size['color'] = segment_size['segment']
 
-# Buat warna unik per segmen
+# warna unik per segmen
 color_palette = px.colors.qualitative.Set3  # Atau gunakan Set1, Pastel, Dark, dll
 
 fig = px.treemap(

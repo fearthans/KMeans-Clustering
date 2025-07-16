@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from model import hitung_rfm, lakukan_clustering, elbow_method, evaluasi_multi_k
 
+with st.sidebar:
+    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.markdown("Qaraa Segmentation App")
+
 st.set_page_config(page_title="Clustering Pelanggan", layout="wide")
 st.title("🔍 Clustering Pelanggan - KMeans")
 
@@ -20,6 +24,7 @@ df_rfm = hitung_rfm(df_clean)
 st.sidebar.header("⚙️ Pengaturan Cluster")
 k = st.sidebar.slider("Pilih jumlah cluster", min_value=2, max_value=10, value=4)
 
+
 # Proses clustering
 df_clustered, centroids, dbi, sil, scaler, X_scaled = lakukan_clustering(df_rfm, k)
 st.session_state["df_clustered"] = df_clustered
@@ -31,7 +36,7 @@ st.subheader("📌 Tabel Hasil Clustering (Keseluruhan)")
 st.dataframe(
     df_clustered,
     use_container_width=True,
-    height=500  # Atur tinggi agar tampil maksimal sebelum scroll
+    height=500 
 )
 
 # Visualisasi clustering
