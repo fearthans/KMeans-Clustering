@@ -4,8 +4,6 @@ from model import bersihkan_data
 
 import streamlit as st
 
-st.set_page_config(page_title="Qaraa Segmentation App", layout="wide")
-
 # Konfigurasi halaman dan font Inter
 st.set_page_config(page_title="Qaraa Segmentation App", layout="wide")
 
