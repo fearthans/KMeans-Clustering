@@ -9,7 +9,11 @@ with st.sidebar:
     
 # Konfigurasi halaman
 st.set_page_config(page_title="Customer Segmentation App", layout="wide")
-
+st.set_page_config(
+    page_title="Customer Segmentation App",
+    page_icon="assets/Logo Qaraa.jpg",  # Ganti sesuai path file
+    layout="wide"
+)
 # Judul utama
 st.markdown("<h1 style='font-size:36px;'>👋 Selamat Datang!</h1>", unsafe_allow_html=True)
 st.markdown("### Aplikasi ini membantu mengelompokkan pelanggan berdasarkan pola transaksi menggunakan K-Means Clustering.")

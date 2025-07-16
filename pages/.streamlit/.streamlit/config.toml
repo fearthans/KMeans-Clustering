@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#1E90FF"               # Dodger Blue untuk aksen utama
+backgroundColor = "#0D1B2A"            # Biru gelap untuk latar utama
+secondaryBackgroundColor = "#1B263B"   # Biru keabu-abuan gelap untuk sidebar
+textColor = "#FFFFFF"                  # Putih agar kontras
+font = "sans serif"
