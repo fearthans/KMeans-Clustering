@@ -5,7 +5,7 @@ import plotly.express as px
 from model import hitung_rfm
 
 with st.sidebar:
-    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")
 
 st.set_page_config(page_title="RFM Analysis", layout="wide")

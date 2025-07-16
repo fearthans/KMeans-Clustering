@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 with st.sidebar:
-    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")
 
 

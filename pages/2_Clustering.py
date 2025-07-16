@@ -5,7 +5,7 @@ import seaborn as sns
 from model import hitung_rfm, lakukan_clustering, elbow_method, evaluasi_multi_k
 
 with st.sidebar:
-    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")
 
 st.set_page_config(page_title="Clustering Pelanggan", layout="wide")

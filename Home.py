@@ -2,8 +2,36 @@ import streamlit as st
 import pandas as pd
 from model import bersihkan_data
 
+import streamlit as st
+
+st.set_page_config(page_title="Qaraa Segmentation App", layout="wide")
+
+# Tambahkan font Inter ke seluruh halaman
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    html, body, [class*="css"]  {
+        font-family: 'Inter', sans-serif;
+        color: #111827;
+    }
+
+    h1, h2, h3 {
+        font-weight: 700 !important;
+        color: #1F2937;
+    }
+
+    .stButton > button {
+        background-color: #A78BFA !important;
+        color: white !important;
+        border-radius: 8px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 with st.sidebar:
-    st.image("assets/Logo Qaraa.jpg", width=150)
+    st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")
 
     
@@ -11,7 +39,7 @@ with st.sidebar:
 st.set_page_config(page_title="Customer Segmentation App", layout="wide")
 st.set_page_config(
     page_title="Customer Segmentation App",
-    page_icon="assets/Logo Qaraa.jpg",  # Ganti sesuai path file
+    page_icon="assets/favicon.png",  # Ganti sesuai path file
     layout="wide"
 )
 # Judul utama
