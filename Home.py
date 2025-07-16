@@ -6,28 +6,59 @@ import streamlit as st
 
 st.set_page_config(page_title="Qaraa Segmentation App", layout="wide")
 
-# Tambahkan font Inter ke seluruh halaman
+# Konfigurasi halaman dan font Inter
+st.set_page_config(page_title="Qaraa Segmentation App", layout="wide")
+
 st.markdown("""
     <style>
+    /* Import font Inter dari Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-    html, body, [class*="css"]  {
+    html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
-        color: #111827;
+        color: #F4F4F4;
     }
 
-    h1, h2, h3 {
-        font-weight: 700 !important;
-        color: #1F2937;
+    /* Responsif: Sesuaikan ukuran heading di mobile */
+    @media (max-width: 768px) {
+        h1, h2, h3 {
+            font-size: 22px !important;
+        }
+        .small-text {
+            font-size: 14px !important;
+        }
     }
 
+    @media (min-width: 769px) {
+        h1 {
+            font-size: 32px !important;
+        }
+    }
+
+    /* Styling tombol */
     .stButton > button {
-        background-color: #A78BFA !important;
-        color: white !important;
+        background-color: #A78BFA;
+        color: white;
+        font-weight: 600;
         border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+    }
+
+    /* Padding kontainer biar pas di desktop & mobile */
+    .main .block-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* Garis pemisah */
+    hr {
+        border: none;
+        border-top: 1px solid #A78BFA;
+        margin: 2rem 0;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 with st.sidebar:
