@@ -3,6 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Konfigurasi halaman
+st.set_page_config(
+    page_title="Qaraa Segmentation App",
+    page_icon="assets/favicon.png",
+    layout="wide"
+)
+
 with st.sidebar:
     st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")

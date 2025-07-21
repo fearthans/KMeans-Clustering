@@ -4,6 +4,13 @@ import numpy as np
 import plotly.express as px
 from model import hitung_rfm
 
+# Konfigurasi halaman
+st.set_page_config(
+    page_title="Qaraa Segmentation App",
+    page_icon="assets/favicon.png",
+    layout="wide"
+)
+
 with st.sidebar:
     st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")

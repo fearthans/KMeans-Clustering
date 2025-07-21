@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from model import hitung_rfm, lakukan_clustering, elbow_method, evaluasi_multi_k
 
+# Konfigurasi halaman
+st.set_page_config(
+    page_title="Qaraa Segmentation App",
+    page_icon="assets/favicon.png",
+    layout="wide"
+)
+
 with st.sidebar:
     st.image("assets/favicon.png", width=150)
     st.markdown("Qaraa Segmentation App")
