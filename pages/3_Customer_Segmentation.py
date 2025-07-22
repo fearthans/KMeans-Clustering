@@ -37,6 +37,7 @@ summary_stats.columns = ['_'.join(col) for col in summary_stats.columns]
 st.dataframe(summary_stats, use_container_width=True)
 
 # Komposisi pelanggan per cluster
+st.markdown("---")
 st.subheader("📌 Komposisi Pelanggan per Cluster")
 cluster_counts = df_clustered['Cluster'].value_counts().sort_index()
 cluster_labels = [f"Cluster {i}" for i in cluster_counts.index]
@@ -52,32 +53,37 @@ ax_pie.axis("equal")
 st.pyplot(fig_pie)
 
 # Visualisasi distribusi RFM per cluster
+st.markdown("---")
 st.subheader("📊 Distribusi RFM per Cluster")
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
+
 with col1:
     fig1, ax1 = plt.subplots()
     sns.boxplot(data=df_clustered, x="Cluster", y="Recency", palette="Pastel1", ax=ax1)
     ax1.set_title("Distribusi Recency per Cluster")
     st.pyplot(fig1)
 
+with col2:
     fig2, ax2 = plt.subplots()
     sns.boxplot(data=df_clustered, x="Cluster", y="Frequency", palette="Pastel2", ax=ax2)
     ax2.set_title("Distribusi Frequency per Cluster")
     st.pyplot(fig2)
 
-with col2:
+with col3:
     fig3, ax3 = plt.subplots()
     sns.boxplot(data=df_clustered, x="Cluster", y="Total_Transaksi", palette="Set3", ax=ax3)
     ax3.set_title("Distribusi Total Transaksi per Cluster")
     st.pyplot(fig3)
 
 # Detail pelanggan per cluster
+st.markdown("---")
 st.subheader("📋 Detail Pelanggan per Cluster")
 selected_cluster = st.selectbox("Pilih Cluster", sorted(df_clustered['Cluster'].unique()))
 df_filtered = df_clustered[df_clustered["Cluster"] == selected_cluster]
 st.dataframe(df_filtered, use_container_width=True)
 
 # Export file clustering utama
+st.markdown("---")
 st.subheader("⬇️ Unduh Data Clustering RFM")
 df_clustered.to_csv("assets/rfm_customer_cluster.csv", index=False)
 with open("assets/rfm_customer_cluster.csv", "rb") as f:
@@ -91,6 +97,7 @@ with open("assets/rfm_customer_cluster.csv", "rb") as f:
 # =============================================
 # ✅ Nama & Produk yang Dibeli per Segment RFM
 # =============================================
+st.markdown("---")
 st.subheader("🧾 Nama & Produk Pelanggan Berdasarkan Segmentasi RFM")
 
 # Pastikan ID sebagai string

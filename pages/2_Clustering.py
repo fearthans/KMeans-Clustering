@@ -47,6 +47,7 @@ st.dataframe(
 )
 
 # Visualisasi clustering
+st.markdown("---")
 st.subheader("📊 Visualisasi Cluster")
 fig, ax = plt.subplots(figsize=(8, 5))
 sns.scatterplot(
@@ -66,12 +67,8 @@ ax.set_title("Cluster Pelanggan berdasarkan Pola Transaksi")
 ax.legend()
 st.pyplot(fig)
 
-# Evaluasi Clustering
-st.subheader("📊 Evaluasi Clustering")
-st.markdown(f"- **Davies-Bouldin Index (k={k})**: `{dbi:.4f}`")
-st.markdown(f"- **Silhouette Score (k={k})**: `{sil:.4f}`")
-
 # Elbow Method
+st.markdown("---")
 st.subheader("📉 Elbow Method")
 range_k, wcss = elbow_method(X_scaled)
 fig2, ax2 = plt.subplots()
@@ -81,7 +78,15 @@ ax2.set_xlabel("Jumlah Cluster (k)")
 ax2.set_ylabel("WCSS")
 st.pyplot(fig2)
 
+
+# Evaluasi Clustering
+st.markdown("---")
+st.subheader("📊 Evaluasi Clustering")
+st.markdown(f"- **Davies-Bouldin Index (k={k})**: `{dbi:.4f}`")
+st.markdown(f"- **Silhouette Score (k={k})**: `{sil:.4f}`")
+
 # Tabel Evaluasi Tambahan
+st.markdown("---")
 st.subheader("📊 Tabel Evaluasi Tambahan")
 range_custom = st.slider("Range jumlah cluster untuk evaluasi", 2, 10, (2, 6))
 k_range = list(range(range_custom[0], range_custom[1] + 1))
@@ -96,7 +101,6 @@ with col2:
     st.dataframe(df_sil, use_container_width=True)
 
 # Tombol download
-st.markdown("---")
 df_clustered.to_csv("assets/rfm_clustered.csv", index=False)
 with open("assets/rfm_clustered.csv", "rb") as f:
     st.download_button(

@@ -61,11 +61,13 @@ df_latest = (
 )
 # ==========================================
 
-# Tampilkan data bersih per customer
-st.subheader("📌 Data Terakhir Order per Customer (1 baris per pelanggan)")
+# Tampilkan data bersih per customer (1 baris per pelanggan)
+st.markdown("---")
+st.subheader("📌 Data Terakhir Order per Customer")
 st.dataframe(df_latest.head(20), use_container_width=True)
 
 # Tampilkan daftar pelanggan bernilai tinggi (cluster terbaik)
+st.markdown("---")
 top_cluster = df_clustered.groupby('Cluster')['Total_Transaksi'].mean().idxmax()
 df_high_value = df_latest[df_latest['Cluster'] == top_cluster]
 st.subheader(f"🏆 Pelanggan Bernilai Tinggi (Cluster {top_cluster})")
@@ -75,15 +77,18 @@ st.dataframe(
 )
 
 # Rekomendasi produk
+st.markdown("---")
 st.subheader("🎯 Rekomendasi Produk Tiap Cluster")
 df_rekomendasi = rekomendasi_produk(df_final)
 st.dataframe(df_rekomendasi, use_container_width=True)
 
 # Tabel Segmentasi
+st.markdown("---")
 st.subheader("🧭 Segmentasi & Strategi per Cluster")
 st.dataframe(df_segmentasi, use_container_width=True)
 
 # Visualisasi jumlah pelanggan per cluster
+st.markdown("---")
 st.subheader("👥 Jumlah Pelanggan per Cluster")
 fig1, ax1 = plt.subplots()
 sns.countplot(data=df_latest, x='Cluster', palette='viridis', ax=ax1)
@@ -91,6 +96,7 @@ ax1.set_title("Distribusi Pelanggan per Cluster")
 st.pyplot(fig1)
 
 # Visualisasi rata-rata transaksi per cluster
+st.markdown("---")
 st.subheader("💰 Rata-rata Transaksi per Cluster")
 fig2, ax2 = plt.subplots()
 sns.barplot(
@@ -107,8 +113,8 @@ st.pyplot(fig2)
 
 
 # Ambil data RFM dan Cluster untuk visualisasi 3D
+st.markdown("---")
 rfm_3d = df_clustered.copy()
-
 st.subheader("🌐 Visualisasi 3D - KMeans Clustering")
 
 fig3 = plt.figure(figsize=(10, 7))

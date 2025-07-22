@@ -199,6 +199,7 @@ with open("assets/rfm_segment_summary.csv", "rb") as f:
 # ========================
 # Visualisasi Treemap 📦
 # ========================
+st.markdown("---")
 st.subheader("🗺️ Visualisasi Segmentasi Pelanggan (Treemap)")
 
 # Hitung jumlah per segment
@@ -224,7 +225,7 @@ fig = px.treemap(
     values='customer_count',
     color='color',
     color_discrete_sequence=color_palette,
-    title="Proporsi Pelanggan per Segment (Warna Unik)"
+    title="Proporsi Pelanggan per Segment"
 )
 
 fig.update_traces(textinfo="label+value+percent entry")
